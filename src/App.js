@@ -9,12 +9,33 @@ export default function App() {
     {id: 3, title: 'Third todo', completed: true},
   ])
 
+  const [todoTitle, setTodoTitle] = useState('')
+
+  const addTodo = (e) => {
+    if(e.key === "Enter") {
+      setTodos([
+          ...todos,
+        {
+          id: Date.now(),
+          title: todoTitle,
+          completed: false
+        }
+      ])
+      setTodoTitle('');
+    }
+  }
+
   return (
     <div className="container">
       <h1>Todo app</h1>
 
         <div className="input-field">
-          <input type="text" />
+          <input
+              type="text"
+              value={todoTitle}
+              onChange={(e) => setTodoTitle(e.target.value)}
+              onKeyPress={addTodo}
+          />
           <label>Todo name</label>
         </div>
 

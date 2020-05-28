@@ -15,7 +15,6 @@ export default function TodoItem({title, id, completed}) {
       <label>
         <input
           type="checkbox"
-          defaultChecked={false}
           checked={checked}
           onChange={() => setChecked(!checked)}
         />
