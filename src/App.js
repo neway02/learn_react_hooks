@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TodoList from './TodoList'
 
 export default function App() {
@@ -24,6 +24,15 @@ export default function App() {
       setTodoTitle('');
     }
   }
+
+  useEffect(() => {
+    const raw = localStorage.getItem('todos') || '[]'
+    setTodos(JSON.parse(raw))
+   }, [])
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+   }, [todos])
 
   return (
     <div className="container">
